@@ -1,0 +1,94 @@
+
+/*内容部分*/
+.content{
+    background: url(../img/articlebg.png) repeat;
+    box-shadow: #075498 0px 1px 10px;
+    padding: 20px;
+
+}
+.custom-content{
+    background: rgba(255,255,255,0.2);
+    padding-bottom: 50px;
+}
+
+
+/*顶部内容*/
+.custom-content-top{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+.custom-top-item{
+    background-color: #ECECEC;
+    border: 10px solid #ffffff;
+    width: 320px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.custom-top-item .img-div,
+.custom-top-item .img-div a,
+.lucency-view,
+.custom-top-item .img-div .img01{
+    height: 17vw;
+    min-height: 150px;
+}
+
+.custom-top-item .img-div{
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.custom-top-item .img-div a{
+    display: block;
+}
+.lucency-view{
+    width: 330px;
+    position: absolute;
+    top: 0px;
+    z-index: 10;
+}
+.custom-top-item .img-div:hover .lucency-view{
+    background: rgba(0,0,0,0.5);
+}
+
+.custom-top-item .img-div .img01{
+    transition: all 1s;
+}
+.custom-top-item .img-div:hover .img01{
+    transform: scale(1.2);
+}
+.custom-essay{
+    padding: 1.1vw 0.5vw;
+}
+.custom-essay dt{
+    text-align: center;
+    padding-bottom: 0.5vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;/*加宽度width属来兼容部分浏览*/
+}
+.custom-essay dt a{
+    font-size: 1.8rem;
+    color: #226039;
+}
+.custom-essay dt a:hover{
+    text-decoration: underline;
+}
+.custom-essay dd{
+    font-size: 1.4rem;
+    color: #656363;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    /*-webkit-line-clamp用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：
+    display: -webkit-box; 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。
+    -webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
+}
+/*顶部内容End*/
+
+
+

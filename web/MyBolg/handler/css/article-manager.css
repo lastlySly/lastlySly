@@ -1,0 +1,10 @@
+
+.custom-tit{
+    border-bottom: solid 1px #7F7F7F;
+}
+.custom-cont>.row{
+    margin-bottom: 20px;
+}
+.custom-font{
+    font-size: 0.9rem;
+}

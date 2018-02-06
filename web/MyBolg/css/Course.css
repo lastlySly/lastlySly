@@ -1,0 +1,14 @@
+
+
+/*内容部分*/
+.content{
+    background: url(../img/articlebg.png) repeat;
+    box-shadow: #075498 0px 1px 10px;
+    padding: 20px;
+
+}
+.custom-content{
+    background: rgba(255,255,255,0.2);
+    /*padding-bottom: 50px;*/
+    padding: 30px 30px 50px 30px;
+}

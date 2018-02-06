@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.itcast.mapper.CustomArticlesheetMapper" >
+
+    <!--定义resultMap-->
+    <resultMap id="ArticlesheetResultMap" type="cn.itcast.po.Articlesheet">
+        <id column="articleid" property="articleid"/>
+        <result column="article_title" property="articleTitle" />
+        <result column="article_describe" property="articleDescribe" />
+        <result column="category" property="category" />
+        <result column="title_imgurl" property="titleImgurl"  />
+        <result column="pubdate" property="pubdate"  />
+        <result column="userid" property="userid"  />
+    </resultMap>
+
+    <resultMap id="ArticlesheetWithBLOBsResultMap" type="cn.itcast.po.ArticlesheetWithBLOBs" extends="ArticlesheetResultMap">
+        <result column="article_content" property="articleContent"/>
+        <result column="keyword" property="keyword"/>
+        <result column="tags" property="tags"></result>
+    </resultMap>
+
+        <!--文章扩展resultMap-->
+    <resultMap id="CustomArticlesheetExtendResultMap" type="cn.itcast.po.CustomArticlesheetExtend" extends="ArticlesheetWithBLOBsResultMap">
+        <association property="adminsheet" javaType="Adminsheet">
+            <id property="userid" column="userid"></id>
+            <result property="nickname" column="nickname"/>
+        </association>
+        <association property="categorysheet" javaType="Categorysheet">
+            <id  property="categoryid" column="category"></id>
+            <result property="category" column="categoryname"></result>
+        </association>
+    </resultMap>
+
+
+    <!--定义resultMap   End-->
+
+    <!--分页查询sql片段-->
+    <sql id="paging_sql">
+        limit #{start},#{pageSize}
+    </sql>
+
+    <!--文章与用户表多表sql片段-->
+    <sql id="link_adminsheet_sql">
+        join adminsheet on
+        articlesheet.userid=adminsheet.userid
+    </sql>
+
+    <!--文章与标签表多表sql片段-->
+    <sql id="link_categorysheet_sql">
+        join categorysheet on
+        articlesheet.category=categorysheet.categoryid
+    </sql>
+
+    <sql id="selectByArticleid_sql">
+        and articleid=#{articleId}
+    </sql>
+
+    <!--文章分页目录获取-->
+    <select id="getArticlesCatalog" parameterType="java.util.Map" resultMap="CustomArticlesheetExtendResultMap">
+        SELECT articlesheet.*,categorysheet.category as categoryname from articlesheet
+        <include refid="link_categorysheet_sql"></include>
+        <include refid="link_adminsheet_sql"></include>
+        order by pubdate desc
+        <include refid="paging_sql"></include>
+
+    </select>
+
+    <!--文章详情页-->
+    <select id="getArticleDetail" parameterType="java.util.Map" resultMap="CustomArticlesheetExtendResultMap">
+        SELECT articlesheet.*,categorysheet.category as categoryname,adminsheet.nickname,adminsheet.username
+        from articlesheet
+        <include refid="link_adminsheet_sql"></include>
+        <include refid="link_categorysheet_sql"></include>
+        <where>
+            <include refid="selectByArticleid_sql"></include>
+        </where>
+    </select>
+</mapper>

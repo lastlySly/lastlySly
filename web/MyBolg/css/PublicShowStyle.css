@@ -1,0 +1,122 @@
+/*时间轴式展示*/
+.timeline{
+    border-right: 5px solid #2783BB;
+    height: 14.1vw;
+    min-height: 210px;
+    display: inline-block;
+}
+.custom-time{
+    height: 50px;
+    /*height: 3vw;*/
+
+    /*border-bottom-left-radius: 35%;*/
+    /*border-top-left-radius: 35%;*/
+    position: relative;
+    transition: all 1s;
+    margin-right: -16px;
+}
+.custom-time span{
+    display: block;
+}
+.time-circle{
+    width: 17px;
+    height: 17px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    background: #1573A9;
+    position: absolute;
+    top: 35%;
+    right: -10px;
+}
+.custom-month-day{
+    font-size: 1.5rem;
+    color: #D4CDCD;
+    /*padding-right: 30px;*/
+    text-align: center;
+}
+.custom-year{
+    font-size: 2.0rem;
+    color: #328DF2;
+    /*padding-right: 30px;*/
+    text-align: center;
+}
+
+.custom-timeline-item:hover .custom-time{
+    background-color: #2783BB;
+    border-bottom-left-radius: 35%;
+    border-top-left-radius: 35%;
+}
+.custom-timeline-item:hover .custom-month-day{
+    color: #ffffff;
+}
+.custom-timeline-item:hover .custom-year{
+    color: #162BCD;
+}
+
+/*右部内容框*/
+.custom-timeline-content{
+    /*height: 14.1vw;*/
+    /*min-height: 180px;*/
+    background-color: #2783BB;
+    margin-left: 40px;
+    /*position: relative;*/
+    border-radius: 10px;
+    padding: 0px 20px 20px 20px;
+}
+
+
+/*指向小三角*/
+.custom-triangle{
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 20px solid #2783BB;
+    margin-left: -40px;
+    margin-top: 15px;
+    border-bottom: 10px solid transparent;
+}
+.custom-title-right{
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    color: #ffffff;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;/*加宽度width属来兼容部分浏览*/
+
+}
+.custom-title-right a{
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+.custom-img-div img{
+    width: 100%;
+    max-height: 100px;
+}
+.custom-content-div{
+    font-size: 1.4rem;
+    color: #ffffff;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.custom-btn{
+    background: #1b6d85;
+    color: #ffffff;
+    font-size: 1.4rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;/*加宽度width属来兼容部分浏览*/
+}
+.custom-label{
+    font-size: 1.3rem;
+    color: #C3C3C3;
+    line-height: 34px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;/*加宽度width属来兼容部分浏览*/
+}
+/*时间轴式展示End*/

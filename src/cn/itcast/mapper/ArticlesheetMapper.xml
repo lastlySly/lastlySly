@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.mapper.ArticlesheetMapper" >
+  <resultMap id="BaseResultMap" type="cn.itcast.po.Articlesheet" >
+    <id column="articleid" property="articleid" jdbcType="VARCHAR" />
+    <result column="article_title" property="articleTitle" jdbcType="VARCHAR" />
+    <result column="article_describe" property="articleDescribe" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="title_imgurl" property="titleImgurl" jdbcType="VARCHAR" />
+    <result column="pubdate" property="pubdate" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.itcast.po.ArticlesheetWithBLOBs" extends="BaseResultMap" >
+    <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
+    <result column="tags" property="tags" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    articleid, article_title, article_describe, category, title_imgurl, pubdate, userid
+  </sql>
+  <sql id="Blob_Column_List" >
+    article_content, keyword, tags
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.itcast.po.ArticlesheetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from articlesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.itcast.po.ArticlesheetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from articlesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from articlesheet
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from articlesheet
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.itcast.po.ArticlesheetExample" >
+    delete from articlesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.itcast.po.ArticlesheetWithBLOBs" >
+    insert into articlesheet (articleid, article_title, article_describe, 
+      category, title_imgurl, pubdate, 
+      userid, article_content, keyword, 
+      tags)
+    values (#{articleid,jdbcType=VARCHAR}, #{articleTitle,jdbcType=VARCHAR}, #{articleDescribe,jdbcType=VARCHAR}, 
+      #{category,jdbcType=INTEGER}, #{titleImgurl,jdbcType=VARCHAR}, #{pubdate,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{articleContent,jdbcType=LONGVARCHAR}, #{keyword,jdbcType=LONGVARCHAR}, 
+      #{tags,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itcast.po.ArticlesheetWithBLOBs" >
+    insert into articlesheet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        articleid,
+      </if>
+      <if test="articleTitle != null" >
+        article_title,
+      </if>
+      <if test="articleDescribe != null" >
+        article_describe,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="titleImgurl != null" >
+        title_imgurl,
+      </if>
+      <if test="pubdate != null" >
+        pubdate,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="articleContent != null" >
+        article_content,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        #{articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTitle != null" >
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleDescribe != null" >
+        #{articleDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="titleImgurl != null" >
+        #{titleImgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pubdate != null" >
+        #{pubdate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="articleContent != null" >
+        #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.itcast.po.ArticlesheetExample" resultType="java.lang.Integer" >
+    select count(*) from articlesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update articlesheet
+    <set >
+      <if test="record.articleid != null" >
+        articleid = #{record.articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleTitle != null" >
+        article_title = #{record.articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleDescribe != null" >
+        article_describe = #{record.articleDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=INTEGER},
+      </if>
+      <if test="record.titleImgurl != null" >
+        title_imgurl = #{record.titleImgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubdate != null" >
+        pubdate = #{record.pubdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleContent != null" >
+        article_content = #{record.articleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.keyword != null" >
+        keyword = #{record.keyword,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.tags != null" >
+        tags = #{record.tags,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update articlesheet
+    set articleid = #{record.articleid,jdbcType=VARCHAR},
+      article_title = #{record.articleTitle,jdbcType=VARCHAR},
+      article_describe = #{record.articleDescribe,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=INTEGER},
+      title_imgurl = #{record.titleImgurl,jdbcType=VARCHAR},
+      pubdate = #{record.pubdate,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      article_content = #{record.articleContent,jdbcType=LONGVARCHAR},
+      keyword = #{record.keyword,jdbcType=LONGVARCHAR},
+      tags = #{record.tags,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update articlesheet
+    set articleid = #{record.articleid,jdbcType=VARCHAR},
+      article_title = #{record.articleTitle,jdbcType=VARCHAR},
+      article_describe = #{record.articleDescribe,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=INTEGER},
+      title_imgurl = #{record.titleImgurl,jdbcType=VARCHAR},
+      pubdate = #{record.pubdate,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.po.ArticlesheetWithBLOBs" >
+    update articlesheet
+    <set >
+      <if test="articleTitle != null" >
+        article_title = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleDescribe != null" >
+        article_describe = #{articleDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="titleImgurl != null" >
+        title_imgurl = #{titleImgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pubdate != null" >
+        pubdate = #{pubdate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="articleContent != null" >
+        article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.itcast.po.ArticlesheetWithBLOBs" >
+    update articlesheet
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_describe = #{articleDescribe,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      title_imgurl = #{titleImgurl,jdbcType=VARCHAR},
+      pubdate = #{pubdate,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      keyword = #{keyword,jdbcType=LONGVARCHAR},
+      tags = #{tags,jdbcType=LONGVARCHAR}
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itcast.po.Articlesheet" >
+    update articlesheet
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_describe = #{articleDescribe,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      title_imgurl = #{titleImgurl,jdbcType=VARCHAR},
+      pubdate = #{pubdate,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER}
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+</mapper>

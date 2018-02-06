@@ -1,0 +1,23 @@
+/*分页按钮*/
+.custom-paging-btns{
+    display: flex;
+    justify-content: space-around;
+}
+.custom-paging-btn{
+    border: solid 1px #ffffff;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    background: #162BCD;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+.custom-paging-btn:hover{
+    background-color: #ac2925;
+    color: #ffffff;
+}
+.custom-paging-btn-choose{
+    background-color: #ac2925;
+}
+/*分页按钮End*/

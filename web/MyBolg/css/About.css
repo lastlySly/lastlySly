@@ -1,0 +1,26 @@
+/*内容部分*/
+.content{
+    background: url(../img/articlebg.png) repeat;
+    box-shadow: #075498 0px 1px 10px;
+    padding: 20px;
+
+}
+.custom-content{
+    background: rgba(255,255,255,0.2);
+    /*padding-bottom: 50px;*/
+    padding: 30px 45px 50px 45px;
+}
+.custom-about-top{
+    height: 180px;
+    width: 100%;
+    background: url("../img/banner_top.jpg") no-repeat -120px center;
+    text-align: center;
+    font-size: 1.6rem;
+    padding-top: 40px;
+}
+.custom-about-pro{
+    font-size: 1.6rem;
+    color: #ffffff;
+    word-wrap: break-word;
+    word-break: normal;
+}

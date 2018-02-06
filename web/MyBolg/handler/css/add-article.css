@@ -1,0 +1,13 @@
+
+.custom-tit{
+    border-bottom: solid 1px #7F7F7F;
+}
+.custom-cont-left>.row, .custom-cont-right>.row{
+    margin-bottom: 20px;
+}
+.custom-cont-left{
+    margin-right: 30px;
+}
+label{
+    font-weight: normal;
+}
